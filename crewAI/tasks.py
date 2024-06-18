@@ -14,7 +14,7 @@ class PlaylistTasks:
             description=dedent(
                 f"""
             **Task**: Develop a Spotify playlist 50 songs long
-            **Description**: Based on the user's artist input, create a 50 song long playlist on Spotify that includes songs from the artist and songs similar to the artist. You must include mostly songs that are not made by {artist}. The output should be a text list of all 50 songs as well as the title of the playlist itself.
+            **Description**: Based on the user's artist input, create a 50 song long playlist on Spotify that includes songs from the artist and songs similar to the artist. You must include mostly songs that are not made by the artist. The output should be a text list of all 50 songs as well as the title of the playlist itself.
 
             **Parameters**:
             - Artist: {artist}

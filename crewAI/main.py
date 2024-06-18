@@ -74,7 +74,7 @@ if __name__ == "__main__":
     print("-------------------------------")
     artist = input(dedent("""What artist do you like?: """))
 
-    custom_crew = PlaylistCrew()
+    custom_crew = PlaylistCrew(artist)
     result = custom_crew.run()
     print("\n\n########################")
     print("## Here is you custom playlist:")
