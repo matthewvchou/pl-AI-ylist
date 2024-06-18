@@ -41,20 +41,17 @@ class PlaylistCrew:
 
         similar_artists = tasks.similar_artists(
             artist_finder,
-            self.artists,
-            self.summary
+            [artist_information]
         )
 
         song_selection = tasks.song_selection(
             song_specialist,
-            self.artists,
-            self.summary
+            [similar_artists, artist_information]
         )
 
         title_compilation = tasks.title_compilation(
             playlist_assembler,
-            self.songs,
-            self.summary
+            [similar_artists, song_selection]
         )
 
         # Define your custom crew here
@@ -74,8 +71,8 @@ if __name__ == "__main__":
     print("-------------------------------")
     artist = input(dedent("""What artist do you like?: """))
 
-    custom_crew = PlaylistCrew(artist)
-    result = custom_crew.run()
+    playlist_crew = PlaylistCrew(artist)
+    result = playlist_crew.run()
     print("\n\n########################")
     print("## Here is you custom playlist:")
     print("########################\n")

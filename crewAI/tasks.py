@@ -23,6 +23,7 @@ class PlaylistTasks:
                 """
             ),
             agent=agent,
+            expected_output='Spotify playlist that is 50 songs long complete with a creative title'
         )
 
     def artist_information(self, agent, artist):
@@ -39,54 +40,50 @@ class PlaylistTasks:
                 """
             ),
             agent=agent,
+            expected_output='In-depth summary about an artist'
         )
     
-    def similar_artists(self, agent, summary):
+    def similar_artists(self, agent, context):
         return Task(
             description=dedent(
                 f"""
             **Task**: Create a list of artists that share qualities to the selected artist
             **Description**: Create a list of 30 different artists similar to the summary of an artist provided. This list should include both male and female performers as well as groups of more than 1 person. Artists should not be repeated. Qualities do not have to match exactly, but the list should still include artists that are at least very similar in style to the summary.
 
-            **Parameters**:
-            - Summary: {summary}
-
             **Note**: {self.__tip_section()}
                 """
             ),
             agent=agent,
+            expected_output='List of 30 different artists similar to the summary of an artist provided',
+            context=context
         )
     
-    def song_selection(self, agent, artists, summary):
+    def song_selection(self, agent, context):
         return Task(
             description=dedent(
                 f"""
             **Task**: Create a list of 50 songs that come from the selected artist and match similar qualities to the summary provided
             **Description**: Create a list of 50 songs created by various artists on the list. These songs should come exclusively from the list of artists. Additionally, these songs should share similar qualities to the summary provided. They do not need to match exactly, but should at least share a similar style to the summary provided.
 
-            **Parameters**:
-            - Artists: {artists}
-            - Summary: {summary}
-
             **Note**: {self.__tip_section()}
                 """
             ),
             agent=agent,
+            expected_output='List of 50 songs',
+            context=context
         )
     
-    def title_compilation(self, agent, songs, summary):
+    def title_compilation(self, agent, context):
         return Task(
             description=dedent(
                 f"""
             **Task**: Display the final playlist and come up with a creative name for it
             **Description**: Compile all 50 songs into a comprehensive, numbered playlist. It must include all 50 songs exactly once. Additionally, come up with a creative name for the playlist that links the main points of the summary to the songs on the list. You should display the entire list as well as the name at the top.
 
-            **Parameters**:
-            - Songs: {songs}
-            - Summary: {summary}
-
             **Note**: {self.__tip_section()}
                 """
             ),
             agent=agent,
+            expected_output='Comprehensive numbered playlist of 50 songs with a unique title',
+            context=context
         )

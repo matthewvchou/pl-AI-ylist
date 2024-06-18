@@ -1,6 +1,6 @@
 from crewai import Agent
 from textwrap import dedent
-from langchain.llms import Ollama
+from langchain_openai import ChatOpenAI
 
 from crewai_tools import SerperDevTool
 search_tool = SerperDevTool()
@@ -11,7 +11,7 @@ search_tool = SerperDevTool()
 # You can also define custom tasks in tasks.py
 class PlaylistAgents:
     def __init__(self):
-        self.Ollama = Ollama(model="openhermes")
+        self.OpenAIGPT35 = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0.7)
 
     def music_critic(self):
         return Agent(
@@ -24,7 +24,7 @@ class PlaylistAgents:
             allow_delegation=False,
             verbose=True,
             tools=[search_tool],
-            llm=self.Ollama,
+            llm=self.OpenAIGPT35
         )
 
     def artist_specialist(self):
@@ -38,7 +38,7 @@ class PlaylistAgents:
             allow_delegation=False,
             verbose=True,
             tools=[search_tool],
-            llm=self.Ollama,
+            llm=self.OpenAIGPT35
         )
 
     def artist_finder(self):
@@ -52,7 +52,7 @@ class PlaylistAgents:
             allow_delegation=False,
             verbose=True,
             tools=[search_tool],
-            llm=self.Ollama,
+            llm=self.OpenAIGPT35
         )
     
     def song_specialist(self):
@@ -66,7 +66,7 @@ class PlaylistAgents:
             allow_delegation=False,
             verbose=True,
             tools=[search_tool],
-            llm=self.Ollama,
+            llm=self.OpenAIGPT35
         )
     
     def playlist_assembler(self):
@@ -79,5 +79,5 @@ class PlaylistAgents:
             # tools=[tool_1, tool_2],
             allow_delegation=False,
             verbose=True,
-            llm=self.Ollama,
+            llm=self.OpenAIGPT35
         )
